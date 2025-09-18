@@ -1,5 +1,6 @@
 export const SITE = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
+  website: "https://abloom25.github.io/", // replace this with your deployed domain
+  base:"/blog",
   author: "ABloom",
   profile: "https://github.com/abloom25",
   desc: "The Flowers There... Are Always in Full Bloom.",
