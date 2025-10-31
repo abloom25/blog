@@ -31,9 +31,9 @@ export default defineAppConfig({
 
 		stats: {
 			/** 归档页面每年标题对应的年龄 */
-			birthYear: 2003,
+			birthYear: 2025,
 			/** blog-stats widget 的预置文本 */
-			wordCount: '约10万',
+			wordCount: '不知道多少字~',
 		},
 	},
 
@@ -43,11 +43,17 @@ export default defineAppConfig({
 		copyright: `© ${new Date().getFullYear()} ${blogConfig.author.name}`,
 		/** 侧边栏底部图标导航 */
 		iconNav: [
-			{ icon: 'ph:house-bold', text: '个人主页', url: blogConfig.author.homepage },
-			{ icon: 'ri:qq-line', text: '交流群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
-			{ icon: 'ph:github-logo-bold', text: 'GitHub: L33Z22L11', url: 'https://github.com/L33Z22L11' },
+			// {
+			// 	icon: 'ph:house-bold',
+			// 	text: '个人主页',
+			// 	url: blogConfig.author.homepage,
+			// },
+			{
+				icon: 'ph:github-logo-bold',
+				text: 'GitHub: abloom25',
+				url: 'https://github.com/abloom25',
+			},
 			{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
-			{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/' },
 		] satisfies NavItem[],
 		/** 页脚站点地图 */
 		nav: [
@@ -55,23 +61,32 @@ export default defineAppConfig({
 				title: '探索',
 				items: [
 					{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
-					{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/' },
 				],
 			},
 			{
 				title: '社交',
 				items: [
-					{ icon: 'ph:github-logo-bold', text: 'L33Z22L11', url: 'https://github.com/L33Z22L11' },
-					{ icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
-					{ icon: 'ph:envelope-simple-bold', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
+					{
+						icon: 'ph:github-logo-bold',
+						text: 'Abloom | 唤青',
+						url: 'https://github.com/abloom25',
+					},
+					// { icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
+					{
+						icon: 'ph:envelope-simple-bold',
+						text: blogConfig.author.email,
+						url: `mailto:${blogConfig.author.email}`,
+					},
 				],
 			},
 			{
 				title: '信息',
 				items: [
-					{ icon: 'simple-icons:nuxtdotjs', text: `主题: Clarity ${version}`, url: 'https://github.com/L33Z22L11/blog-v3' },
-					{ icon: 'ph:swatches-bold', text: '主题和组件文档', url: '/theme' },
-					{ icon: 'ph:certificate-bold', text: '陕ICP备2025072742号-3', url: 'https://beian.miit.gov.cn/' },
+					{
+						icon: 'simple-icons:nuxtdotjs',
+						text: `主题: Clarity ${version}`,
+						url: 'https://github.com/L33Z22L11/blog-v3',
+					},
 				],
 			},
 		] satisfies Nav,
@@ -79,11 +94,11 @@ export default defineAppConfig({
 
 	/** 左侧栏顶部 Logo */
 	header: {
-		logo: 'https://weavatar.com/avatar/47c0f2e82b76d9b10eb3023df9e02e4e3fdbeaf5b74b842063f207971e7fbe7b?s=160',
+		logo: '/icon.png',
 		/** 展示标题文本，否则展示纯 Logo */
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
-		emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
+		// emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
 	},
 
 	/** 左侧栏导航 */
