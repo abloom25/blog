@@ -62,4 +62,43 @@ export default [
 			},
 		],
 	},
+	{
+		name: '漫游',
+		desc: '网上冲浪时发现的精彩内容与常读订阅，与君共享。',
+		// @keep-sorted { "keys": ["date"] }
+		entries: [
+			{
+				author: '静かな森',
+				desc: '致虚极，守静笃。',
+				link: 'https://innei.in/',
+				feed: 'https://innei.in/feed',
+				icon: 'https://innei.in/innei.svg',
+				avatar: getGhAvatar('Innei'),
+				archs: ['Mix Space', 'Cloudflare'],
+				date: '2024-02-13',
+			},
+			{
+				author: 'Anthony Fu',
+				desc: 'Hey, I am Anthony Fu, a fanatical open sourceror.',
+				link: 'https://antfu.me/',
+				feed: 'https://antfu.me/feed.xml',
+				icon: 'https://antfu.me/favicon.svg',
+				avatar: getGhAvatar('antfu'),
+				archs: ['Vue', 'Netlify'],
+				date: '2024-10-26',
+			},
+			{
+				author: '無名',
+				sitenick: '小栈',
+				title: '無名小栈',
+				desc: '分享技术与科技生活',
+				link: 'https://blog.imsyy.top/',
+				feed: 'https://blog.imsyy.top/rss.xml',
+				icon: getFavicon('blog.imsyy.top'),
+				avatar: getGhAvatar('imsyy'),
+				archs: ['VitePress', 'Vercel'],
+				date: '2024-10-26',
+			},
+		],
+	},
 ] satisfies FeedGroup[]
