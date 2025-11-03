@@ -69,12 +69,12 @@ export default defineEventHandler(async (event) => {
 		],
 		language: blogConfig.language, // RSS 2.0
 		generator: {
-			$uri: 'https://github.com/L33Z22L11/blog-v3',
+			$uri: blogConfig.url,
 			$version: version,
-			_: 'Zhilu Blog',
+			_: blogConfig.title,
 		},
 		icon: blogConfig.favicon,
-		logo: blogConfig.author.avatar, // Ratio should be 2:1
+		logo: blogConfig.favicon, // Ratio should be 2:1
 		rights: `© ${new Date().getFullYear()} ${blogConfig.author.name}`,
 		subtitle: blogConfig.subtitle || blogConfig.description,
 		entry: entries,
