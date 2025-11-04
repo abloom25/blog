@@ -98,7 +98,7 @@ export default defineAppConfig({
 		/** 展示标题文本，否则展示纯 Logo */
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
-		// emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
+		// emojiTail: ['✨'],
 	},
 
 	/** 左侧栏导航 */
@@ -107,6 +107,7 @@ export default defineAppConfig({
 			title: '',
 			items: [
 				{ icon: 'ph:files-bold', text: '文章', url: '/' },
+				{ icon: 'ph:archive-bold', text: '合集', url: '/categories' },
 				{ icon: 'ph:link-bold', text: '友链', url: '/link' },
 				{ icon: 'ph:archive-bold', text: '归档', url: '/archive' },
 				{ icon: 'ph:music-notes-bold', text: '音乐站', url: 'https://music.eees.blog/' },
