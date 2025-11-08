@@ -1,7 +1,5 @@
 import type { FeedEntry } from './app/types/feed'
 
-export { zhCN as dateLocale } from 'date-fns/locale/zh-CN'
-
 const basicConfig = {
 	title: '唤青映记',
 	subtitle: 'Per aspera ad astra',
