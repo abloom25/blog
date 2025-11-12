@@ -37,7 +37,7 @@ const blogConfig = {
 			梦迹: { icon: 'ph:flower-bold', color: '#eba' },
 			唤青映记: { icon: 'ph:chat-bold', color: '#3ba' },
 			梦境前: { icon: 'ph:shooting-star-bold', color: '#f77' },
-			// 代码: { icon: 'ph:code-bold', color: '#77f' },
+			诗: { icon: 'ph:cloud-fog-bold', color: '#77f' },
 		},
 		defaultCategoryIcon: 'ph:folder-bold',
 		/** 文章版式，首个为默认版式 */
