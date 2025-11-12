@@ -6,6 +6,7 @@ updated: 2025-11-10
 type: story
 categories: [梦迹]
 tags: [梦境]
+image: https://cdn.jsdelivr.net/gh/abloom25/picx-images-hosting@master/desert.9rjtlwqgu2.webp
 ---
 那个清晨，窗外残雪未融，六年级的我猛地从梦中惊醒，心脏在胸腔里剧烈鼓动。我试图平复，但思绪混乱不堪：她是谁？我身在何处？下意识触碰脚底，仍残留着沙粒磨砺的灼痛。
 

@@ -6,6 +6,7 @@ updated: 2025-11-10
 type: story
 categories: [梦迹]
 tags: [梦境]
+image: https://cdn.jsdelivr.net/gh/abloom25/picx-images-hosting@master/desert.5xb22xh2lx.webp
 ---
 在一个暑假，我踏上了前往外婆家的旅程。我乘坐着古旧的蒸汽列车，车厢斑驳陈旧，仿佛历经沧桑，唯我一人。午后，火车停靠在一座孤立的木制站台，周围绿意深浓，如同被一片原始森林环抱。潮湿的藤蔓紧紧缠绕着站台的木柱，诉说着无人知晓的时光。外婆已在迎接我的地方等候。
 

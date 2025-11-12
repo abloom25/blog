@@ -6,6 +6,7 @@ updated: 2025-11-03
 type: story
 categories: [梦境前]
 tags: [梦境]
+image: https://cdn.jsdelivr.net/gh/abloom25/picx-images-hosting@master/dreampre.5q7u7i1i39.webp
 ---
 
 ## 你好

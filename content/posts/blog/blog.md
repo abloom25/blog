@@ -6,6 +6,7 @@ updated: 2025-11-03
 type: story
 categories: [唤青映记]
 tags: []
+image: /icon.png
 ---
 
 ## 博客的由来
