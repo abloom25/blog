@@ -6,7 +6,7 @@ updated: 2024-07-10
 type: story
 categories: [诗]
 tags: [诗]
-image: 
+image: https://cdn.jsdelivr.net/gh/abloom25/picx-images-hosting@master/cloudinsanya.2dp4d7rjfh.webp
 ---
 
 ::poetry

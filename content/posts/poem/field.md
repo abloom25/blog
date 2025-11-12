@@ -6,7 +6,7 @@ updated: 2025-09-14
 type: story
 categories: [诗]
 tags: [诗]
-image: https://jsd.cdn.zzko.cn/gh/abloom25/picx-images-hosting@master/field.6bhhtuop14.webp
+image: https://cdn.jsdelivr.net/gh/abloom25/picx-images-hosting@master/field.6ikppbq389.webp
 ---
 
 ::poetry
