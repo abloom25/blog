@@ -1,26 +1,27 @@
 import type { FeedEntry } from './app/types/feed'
 
 const basicConfig = {
-	title: '纸鹿摸鱼处',
-	subtitle: '纸鹿至麓不知路，支炉制露不止漉',
+	title: '唤青映记',
+	subtitle: 'Per aspera ad astra',
 	// 长 description 利好于 SEO
-	description: '纸鹿本鹿的个人博客，分享技术与生活。“折腾不止，摸鱼生活——摸门🙏🏻”。纸鹿是一名开源爱好者，结识了许多志同道合的朋友。这个博客记录了他在生活和技术学习中的点滴经历，充满启发与思考。网站界面简洁美观，内容丰富实用，人气互动活跃，涵盖了编程、生活、学习等多个领域，为读者提供了卓越的阅读体验。',
+	// TODO
+	description: '',
 	author: {
-		name: '纸鹿本鹿',
-		avatar: 'https://www.zhilu.site/api/avatar.png',
-		email: 'hi@zhilu.cyou',
-		homepage: 'https://www.zhilu.site/',
+		name: 'Abloom | 唤青',
+		avatar: 'https://avatars.githubusercontent.com/u/161844018?v=4',
+		email: 'evereen2023@gmail.com',
+		homepage: 'https://blog.abloom.site/',
 	},
 	copyright: {
 		abbr: 'CC BY-NC-SA 4.0',
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: 'https://www.zhilu.site/api/icon.png',
+	favicon: '/icon.png',
 	language: 'zh-CN',
-	timeEstablished: '2019-07-19',
+	timeEstablished: '2024-12-07',
 	timeZone: 'Asia/Shanghai',
-	url: 'https://blog.zhilu.site/',
+	url: 'https://blog.abloom.site/',
 	defaultCategory: '未分类',
 }
 
@@ -33,16 +34,10 @@ const blogConfig = {
 	article: {
 		categories: {
 			[basicConfig.defaultCategory]: { icon: 'tabler:folder-open' },
-			/** 实践可复用操作经验：工具/系统/部署/排障 */
-			技术: { icon: 'tabler:mouse', color: '#33aaff' },
 			/** 编程：代码实现/工程实践/开发方法 */
+			Continuum: { icon: 'tabler:user-code', color: '#65a30d' },
 			开发: { icon: 'tabler:code', color: '#7777ff' },
-			/** 安全：漏洞/CTF/恶意软件/安全事件分析 */
-			安全: { icon: 'tabler:bug', color: '#ff7733' },
-			/** 思考：观点讨论/复盘反思/行业或产品观察 */
-			杂谈: { icon: 'tabler:message', color: '#33bbaa' },
-			/** 记录叙事：个人经历/校园家庭/日常片段 */
-			生活: { icon: 'tabler:leaf', color: '#ff7777' },
+			唤青映记: { icon: 'tabler:book-2', color: '#3ba' },
 		},
 		defaultCategoryIcon: 'tabler:folder',
 		/** 文章版式，首个为默认版式 */
@@ -74,25 +69,26 @@ const blogConfig = {
 
 	/** 向 <head> 中添加脚本 */
 	scripts: [
+		// TODO
 		// 自己部署的 Umami 统计服务
-		{ 'src': 'https://zhi.zhilu.site/zhi.js', 'data-website-id': 'a1997c81-a42b-46f6-8d1d-8fbd67a8ef41', 'defer': true },
-		// 自己网站的 Cloudflare Insights 统计服务
-		{ 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
+		{ 'src': 'https://cloud.umami.is/script.js', 'data-website-id': 'edb4a9d1-6dd6-434f-813f-cec3e89338fc', 'defer': true },
+		// // 自己网站的 Cloudflare Insights 统计服务
+		// { 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
 		// Twikoo 评论系统
 		{ src: 'https://lib.baomitu.com/twikoo/1.6.44/twikoo.min.js', defer: true },
 	],
 
 	/** 自己部署的 Twikoo 服务 */
 	twikoo: {
-		envId: 'https://twikoo.zhilu.site/',
-		preload: 'https://twikoo.zhilu.site/',
+		envId: 'https://twikoo-for-blog-9ch06lvnn-evereens-projects.vercel.app/',
+		preload: 'https://twikoo-for-blog-9ch06lvnn-evereens-projects.vercel.app/',
 	},
 }
 
 /** 用于生成 OPML 和友链页面配置 */
 export const myFeed: FeedEntry = {
 	author: blogConfig.author.name,
-	sitenick: '摸鱼处',
+	sitenick: '唤青映记',
 	title: blogConfig.title,
 	desc: blogConfig.subtitle || blogConfig.description,
 	link: blogConfig.url,
