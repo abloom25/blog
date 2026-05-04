@@ -39,7 +39,6 @@ const blogConfig = {
 			开发: { icon: 'tabler:code', color: '#7777ff' },
 			唤青映记: { icon: 'tabler:book-2', color: '#3ba' },
 		},
-		defaultCategoryIcon: 'tabler:folder',
 		/** 文章版式，首个为默认版式 */
 		types: {
 			tech: {},
