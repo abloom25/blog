@@ -2,10 +2,10 @@
 title: Continuum：变人
 date: 2026-04-07 21:34:00
 updated: 2026-04-08 19:20:00
-aside: [meta-aside-continuum, meta-aside-afeather, toc]
+aside: [meta-aside-nightlight, meta-aside-afeather, toc]
 type: story
-description: Continuum · 始于逻辑，终于浪漫。
-categories: [Continuum, 开发]
+description: 一场童年梦境点燃的AI追寻之旅，作者从梦的启示出发，历经技术等待与早期探索，最终决心亲手打造一个真正“像人”、拥有记忆与主动性的数字个体。
+categories: [Nightlight, 开发]
 tags: []
 image: https://github.com/abloom25/picx-images-hosting/raw/master/C9A0063A-CFBA-4F31-B963-57F18DE5BF3A(20260426-180.7lkljsuvfx.webp
 
@@ -21,12 +21,13 @@ link: https://afeather.cn
 ::
 ::
 
-::meta-aside-continuum
+::meta-aside-nightlight
 ::link-card
 ---
-title: Continuum
+title: Nightlight
 icon: https://avatars.githubusercontent.com/u/274427626?s=400&u=d31ecec15c794864562e3b0092367fb1184f9ecb&v=4
-link: https://github.com/ContinuumArch
+
+link: https://github.com/NightlightAI
 ---
 ::
 ::

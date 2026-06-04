@@ -35,7 +35,7 @@ const blogConfig = {
 		categories: {
 			[basicConfig.defaultCategory]: { icon: 'tabler:folder-open' },
 			/** 编程：代码实现/工程实践/开发方法 */
-			Continuum: { icon: 'tabler:user-code', color: '#65a30d' },
+			Nightlight: { icon: 'tabler:sparkles', color: '#C68C65' },
 			开发: { icon: 'tabler:code', color: '#7777ff' },
 			唤青映记: { icon: 'tabler:book-2', color: '#3ba' },
 		},
