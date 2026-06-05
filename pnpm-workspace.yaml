@@ -44,7 +44,7 @@ catalogs:
     '@nuxt/hints': ^1.1.0
     '@zinkawaii/stylelint-config': ^0.4.0
     cspell: ^10.0.0
-    eslint: ^10.3.0
+    eslint: 10.3.0
     stylelint: ^17.10.0
   ui:
     '@bikariya/image-viewer': ^0.0.8

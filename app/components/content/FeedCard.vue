@@ -12,6 +12,7 @@ const isInspect = computed(() => import.meta.dev && route.query.inspect !== unde
 const title = computed(() => props.title ?? props.sitenick ?? props.author)
 const domainTip = computed(() => getDomainType(getMainDomain(props.link, true)))
 const domainIcon = computed(() => getDomainIcon(props.link))
+const establishedDate = computed(() => Temporal.PlainDate.from(props.date).toLocaleString())
 
 function getInspectStyle(src: string): CSSProperties {
 	src = getMainDomain(src)
@@ -78,7 +79,7 @@ function getInspectStyle(src: string): CSSProperties {
 		</div>
 		<div class="desc-content">
 			<div class="date">
-				{{ Temporal.PlainDate.from(date).toLocaleString() }}
+				{{ establishedDate }}
 			</div>
 
 			<p>{{ error ?? desc }}</p>

@@ -1,7 +1,7 @@
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-	ignores: ['*.yaml'],
+	ignores: ['*.yaml', '**/*.md'],
 	stylistic: {
 		indent: 'tab',
 	},
