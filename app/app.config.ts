@@ -109,7 +109,7 @@ export default defineAppConfig({
 		/** 无订阅源展示静音图标 */
 		remindNoFeed: true,
 		/** 友链分组内随机排序 */
-		randomInGroup: false,
+		randomInGroup: true,
 	},
 
 	/** 左侧栏导航 */
