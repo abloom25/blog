@@ -80,19 +80,25 @@ onMounted(() => {
 	isInitialized.value = true
 	applyVolume()
 	revealTrackInfo()
+	setupMediaSession()
 })
 
 onUnmounted(() => {
 	lyricAbortController?.abort()
 	clearTimeout(trackInfoTimer)
+	clearMediaSession()
 })
 
 watch(currentTrack, () => {
 	currentTime.value = 0
 	revealTrackInfo()
-	if (import.meta.client)
+	if (import.meta.client) {
 		void loadLyrics()
+		updateMediaMetadata()
+	}
 }, { flush: 'post' })
+
+watch(isPlaybackActive, updateMediaPlaybackState)
 
 function applyVolume() {
 	if (audioEl.value)
@@ -274,6 +280,29 @@ function getNextShuffledTrackIndex() {
 	return shuffledTrackIndexes[shuffledTrackPosition]
 }
 
+function getPreviousShuffledTrackIndex() {
+	if (!tracks.value.length)
+		return
+
+	if (shuffledTrackIndexes.length !== tracks.value.length)
+		initializeShuffledTracks()
+
+	if (shuffledTrackPosition > 0) {
+		shuffledTrackPosition--
+		return shuffledTrackIndexes[shuffledTrackPosition]
+	}
+
+	const previousIndexes = shuffleTrackIndexes(currentIndex.value)
+	const previousIndex = previousIndexes[0]!
+	shuffledTrackIndexes = [
+		previousIndex,
+		currentIndex.value,
+		...previousIndexes.slice(1).filter(index => index !== currentIndex.value),
+	]
+	shuffledTrackPosition = 0
+	return previousIndex
+}
+
 async function play() {
 	const audio = audioEl.value
 	if (!audio || !currentTrack.value || isUnavailable.value)
@@ -307,23 +336,157 @@ function togglePlayback() {
 		void play()
 }
 
-async function nextTrack(continuePlaying = isPlaying.value) {
+async function nextTrack(continuePlaying = isPlaybackActive.value) {
 	if (!tracks.value.length)
 		return
 
 	if (document.activeElement instanceof HTMLElement)
 		document.activeElement.blur()
 
+	await switchTrack(getNextShuffledTrackIndex(), continuePlaying)
+}
+
+async function previousTrack(continuePlaying = isPlaybackActive.value) {
+	const audio = audioEl.value
+	if (!tracks.value.length || !audio)
+		return
+
+	if (audio.currentTime > 3) {
+		audio.currentTime = 0
+		currentTime.value = 0
+		updateMediaPositionState()
+		return
+	}
+
+	await switchTrack(getPreviousShuffledTrackIndex(), continuePlaying)
+}
+
+async function switchTrack(index: number | undefined, continuePlaying: boolean) {
+	if (index === undefined)
+		return
+
 	audioEl.value?.pause()
 	isPlaying.value = false
 	isAudioLoading.value = continuePlaying
-	currentIndex.value = getNextShuffledTrackIndex() ?? currentIndex.value
+	currentIndex.value = index
 
 	await nextTick()
 	applyVolume()
 	audioEl.value?.load()
 	if (continuePlaying)
 		void play()
+}
+
+function setupMediaSession() {
+	if (!('mediaSession' in navigator) || !('MediaMetadata' in window))
+		return
+
+	updateMediaMetadata()
+	updateMediaPlaybackState()
+
+	const handlers: Partial<Record<MediaSessionAction, MediaSessionActionHandler>> = {
+		play: () => void play(),
+		pause,
+		stop: () => {
+			pause()
+			seekTo(0)
+		},
+		nexttrack: () => void nextTrack(),
+		previoustrack: () => void previousTrack(),
+		seekbackward: details => seekBy(-(details.seekOffset ?? 10)),
+		seekforward: details => seekBy(details.seekOffset ?? 10),
+		seekto: (details) => {
+			if (details.seekTime !== undefined)
+				seekTo(details.seekTime, details.fastSeek)
+		},
+	}
+
+	for (const [action, handler] of Object.entries(handlers)) {
+		try {
+			navigator.mediaSession.setActionHandler(action as MediaSessionAction, handler)
+		}
+		catch {
+			// 部分浏览器只实现了 Media Session 的一部分操作。
+		}
+	}
+}
+
+function clearMediaSession() {
+	if (!('mediaSession' in navigator))
+		return
+
+	navigator.mediaSession.metadata = null
+	navigator.mediaSession.playbackState = 'none'
+}
+
+function updateMediaMetadata() {
+	const track = currentTrack.value
+	if (!track || !('mediaSession' in navigator) || !('MediaMetadata' in window))
+		return
+
+	navigator.mediaSession.metadata = new MediaMetadata({
+		title: track.name,
+		artist: track.artist,
+		album: appConfig.title,
+		artwork: [{ src: track.pic }],
+	})
+
+	try {
+		navigator.mediaSession.setPositionState()
+	}
+	catch {
+		// 旧版浏览器可能不支持清空系统媒体进度。
+	}
+}
+
+function updateMediaPlaybackState() {
+	if (!('mediaSession' in navigator))
+		return
+
+	navigator.mediaSession.playbackState = isPlaybackActive.value ? 'playing' : 'paused'
+}
+
+function updateMediaPositionState() {
+	const audio = audioEl.value
+	if (!audio || !('mediaSession' in navigator))
+		return
+
+	if (!Number.isFinite(audio.duration) || audio.duration <= 0)
+		return
+
+	try {
+		navigator.mediaSession.setPositionState({
+			duration: audio.duration,
+			playbackRate: audio.playbackRate,
+			position: Math.min(Math.max(audio.currentTime, 0), audio.duration),
+		})
+	}
+	catch {
+		// 音频切换期间 duration 与 currentTime 可能短暂不同步。
+	}
+}
+
+function seekBy(offset: number) {
+	const audio = audioEl.value
+	if (!audio)
+		return
+
+	seekTo(audio.currentTime + offset)
+}
+
+function seekTo(time: number, fastSeek = false) {
+	const audio = audioEl.value
+	if (!audio || !Number.isFinite(audio.duration))
+		return
+
+	const position = Math.min(Math.max(time, 0), audio.duration)
+	if (fastSeek && 'fastSeek' in audio)
+		audio.fastSeek(position)
+	else
+		audio.currentTime = position
+
+	currentTime.value = position
+	updateMediaPositionState()
 }
 
 function handleTrackError() {
@@ -343,6 +506,12 @@ function handleTrackError() {
 
 function updateCurrentTime(event: Event) {
 	currentTime.value = (event.currentTarget as HTMLAudioElement).currentTime
+	updateMediaPositionState()
+}
+
+function handleLoadedMetadata() {
+	applyVolume()
+	updateMediaPositionState()
 }
 </script>
 
@@ -362,10 +531,12 @@ function updateCurrentTime(event: Event) {
 		@canplay="isAudioLoading = false"
 		@ended="nextTrack(true)"
 		@error="handleTrackError"
-		@loadedmetadata="applyVolume"
+		@durationchange="updateMediaPositionState"
+		@loadedmetadata="handleLoadedMetadata"
 		@loadstart="isAudioLoading = isPlaying"
 		@pause="isPlaying = false"
 		@playing="isPlaying = true"
+		@ratechange="updateMediaPositionState"
 		@timeupdate="updateCurrentTime"
 	/>
 
