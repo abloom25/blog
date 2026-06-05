@@ -94,11 +94,12 @@ watch(currentTrack, () => {
 	revealTrackInfo()
 	if (import.meta.client) {
 		void loadLyrics()
-		updateMediaMetadata()
+		updateMediaMetadata(true)
 	}
 }, { flush: 'post' })
 
 watch(isPlaybackActive, updateMediaPlaybackState)
+watch([currentLyric, isPlaying], () => updateMediaMetadata())
 
 function applyVolume() {
 	if (audioEl.value)
@@ -419,23 +420,26 @@ function clearMediaSession() {
 	navigator.mediaSession.playbackState = 'none'
 }
 
-function updateMediaMetadata() {
+function updateMediaMetadata(clearPosition = false) {
 	const track = currentTrack.value
 	if (!track || !('mediaSession' in navigator) || !('MediaMetadata' in window))
 		return
 
+	const lockScreenLyric = isPlaying.value ? currentLyric.value?.text : undefined
 	navigator.mediaSession.metadata = new MediaMetadata({
-		title: track.name,
-		artist: track.artist,
-		album: appConfig.title,
+		title: lockScreenLyric || track.name,
+		artist: lockScreenLyric ? `${track.name} · ${track.artist}` : track.artist,
+		album: lockScreenLyric ? appConfig.title : `${appConfig.title} · ${track.name}`,
 		artwork: [{ src: track.pic }],
 	})
 
-	try {
-		navigator.mediaSession.setPositionState()
-	}
-	catch {
-		// 旧版浏览器可能不支持清空系统媒体进度。
+	if (clearPosition) {
+		try {
+			navigator.mediaSession.setPositionState()
+		}
+		catch {
+			// 旧版浏览器可能不支持清空系统媒体进度。
+		}
 	}
 }
 

@@ -72,7 +72,7 @@ const blogConfig = {
 		api: 'https://api.qijieya.cn/meting/',
 		server: 'netease',
 		type: 'playlist',
-		id: '18017183232',
+		id: '17390341309',
 		defaultVolume: 0.6,
 	},
 
