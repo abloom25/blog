@@ -1,6 +1,11 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
 const colorMode = useColorMode()
+const isMounted = ref(false)
+
+onMounted(() => {
+	isMounted.value = true
+})
 </script>
 
 <template>
@@ -10,7 +15,7 @@ const colorMode = useColorMode()
 		:key="themeName"
 		v-tip="themeData.tip"
 		:aria-label="themeData.tip"
-		:class="{ active: colorMode.preference === themeName }"
+		:class="{ active: isMounted && colorMode.preference === themeName }"
 		@click="colorMode.preference = themeName"
 	>
 		<Icon :name="themeData.icon" />

@@ -43,6 +43,7 @@ const debouncedSelection = refDebounced(text)
 	</nav>
 
 	<footer class="sidebar-footer">
+		<BlogMusicPlayer v-if="appConfig.music.enabled" />
 		<BlogThemeToggle />
 		<ZIconNavList :list="appConfig.footer.iconNav" />
 	</footer>

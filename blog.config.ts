@@ -66,6 +66,16 @@ const blogConfig = {
 		enableStyle: true,
 	},
 
+	/** 左侧栏音乐播放器 */
+	music: {
+		enabled: true,
+		api: 'https://api.qijieya.cn/meting/',
+		server: 'netease',
+		type: 'playlist',
+		id: '17390341309',
+		defaultVolume: 0.6,
+	},
+
 	/** 向 <head> 中添加脚本 */
 	scripts: [
 		// TODO
