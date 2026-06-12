@@ -41,6 +41,7 @@
     "@vueuse/core": "catalog:util",
     "@vueuse/nuxt": "catalog:util",
     "@vueuse/router": "catalog:util",
+    "NeteaseCloudMusicApi": "^4.32.0",
     "abcjs": "catalog:content",
     "ci-info": "catalog:framework",
     "embla-carousel-autoplay": "catalog:ui",

@@ -69,7 +69,7 @@ const blogConfig = {
 	/** 左侧栏音乐播放器 */
 	music: {
 		enabled: true,
-		api: 'https://api.qijieya.cn/meting/',
+		api: 'https://api.music.abloom.site/api',
 		server: 'netease',
 		type: 'playlist',
 		id: '17390341309',

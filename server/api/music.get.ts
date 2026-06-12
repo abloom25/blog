@@ -4,9 +4,9 @@ import blogConfig from '~~/blog.config'
 
 const httpUrl = z.url().refine(url => ['http:', 'https:'].includes(new URL(url).protocol))
 
-const musicTrackSchema = z.object({
-	name: z.string().trim().min(1),
-	artist: z.string().trim().min(1),
+const metingTrackSchema = z.object({
+	title: z.string().trim().min(1),
+	author: z.string().trim().min(1),
 	url: httpUrl,
 	pic: httpUrl,
 	lrc: httpUrl,
@@ -29,8 +29,16 @@ export default defineEventHandler(async (): Promise<MusicTrack[]> => {
 		}
 
 		return data.flatMap((item) => {
-			const parsed = musicTrackSchema.safeParse(item)
-			return parsed.success ? [parsed.data] : []
+			const parsed = metingTrackSchema.safeParse(item)
+			if (!parsed.success)
+				return []
+			return [{
+				name: parsed.data.title,
+				artist: parsed.data.author,
+				url: parsed.data.url,
+				pic: parsed.data.pic,
+				lrc: parsed.data.lrc,
+			}]
 		})
 	}
 	catch (error) {
