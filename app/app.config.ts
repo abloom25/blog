@@ -120,6 +120,7 @@ export default defineAppConfig({
 				{ icon: 'tabler:files', text: '文章', url: '/' },
 				{ icon: 'tabler:link', text: '友链', url: '/link' },
 				{ icon: 'tabler:archive', text: '归档', url: '/archive' },
+				{ icon: 'tabler:note', text: 'Memo', url: 'https://memo.abloom.site/' },
 				// { icon: 'tabler:photo', text: '图库', url: 'https://gallery.abloom.site/' },
 				{ icon: 'tabler:music', text: '音乐站', url: 'https://music.abloom.site/' },
 			],
